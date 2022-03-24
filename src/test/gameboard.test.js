@@ -2,15 +2,18 @@ const gameboardFactory = require('../functions/Gameboard');
 const shipFactory = require("../functions/Ship");
 
 describe ('gameboard functions', () => {
-  let gameboard = gameboardFactory();
-  gameboard.createBoard();
+  let fleet = [];
   let battleship;
   let cruiser;
+  let gameboard = gameboardFactory(fleet);
+  gameboard.createBoard();
   beforeEach(() => {
-    battleship = shipFactory('battleship', 5, [1, 2, 3, 4, 5]);
-    cruiser = shipFactory('cruiser', 3, [24,34,44]);
-    gameboard.placeShip(battleship, [1, 2, 3, 4, 5]);
-    gameboard.placeShip(cruiser, [24, 34, 44]);
+    battleship = shipFactory('battleship', 4, [1, 2, 3, 4]);
+    cruiser = shipFactory('cruiser', 3, [24, 34, 44]);
+    gameboard.placeShip(battleship);
+    gameboard.placeShip(cruiser);
+    fleet.push(battleship);
+    fleet.push(cruiser);
   })
   
   test ('100 spaces were created', () => {
@@ -25,13 +28,23 @@ describe ('gameboard functions', () => {
   test ('testing gameboard receiving hit', () => {
     gameboard.receiveAttack(22);
     gameboard.receiveAttack(3);
-    console.log(gameboard.gameboardArray);
     expect(gameboard.gameboardArray[21]).toMatch('miss'),
     expect(gameboard.gameboardArray[2]).toMatch('battleship hit')
   })
+  
+  test ('receiving hit sends hit function to ship', () => {
+    gameboard.receiveAttack(24);
+    expect(cruiser.hits.length).toBe(1)
+  })
 
-  // test ('reveiving hit sends hit function to ship', () => {
-  //   gameboard.receiveAttack(24);
-  //   expect(cruiser.hit(24)).toMatch('hit')
-  // })
+  test ('sunk the battleship and cruiser', () => {
+    gameboard.receiveAttack(1);
+    gameboard.receiveAttack(2);
+    gameboard.receiveAttack(3);
+    gameboard.receiveAttack(4);
+    gameboard.receiveAttack(24);
+    gameboard.receiveAttack(34);
+    gameboard.receiveAttack(44);
+    expect(gameboard.isFleetSunk()).toBe(true);
+  })
 })

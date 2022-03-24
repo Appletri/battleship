@@ -7,6 +7,7 @@ const shipFactory = (name, size, location) => {
     getLocation : function() {
       return this.location;
     },
+
     hit : function(id) {
       this.hits.push(id);
       return 'hit';
