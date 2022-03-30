@@ -1,0 +1,50 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background: radial-gradient(#ff5d71, #EB3349);
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  color: #FFC837 ;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.gameboard-ui{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  width: 53vw;
+  min-width: 375px;
+  height: 50vw;
+  min-height: 350px;
+  gap: 2px;
+}
+
+.square {
+  width: 5vw;
+  min-width: 35px;
+  height: 5vw;
+  min-height: 35px;
+  border-radius: .5vw;
+  background: radial-gradient(circle at bottom center, #FFC837 15px, #FF8008);
+  box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.square:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgb(255, 232, 156);
+}
