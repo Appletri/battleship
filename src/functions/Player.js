@@ -7,7 +7,7 @@ const Player = (name, cpu) => {
     oppGameboard : gameboard(),
 
     attack : function(location) { 
-      this.oppGameboard.receiveAttack(location);
+      this.oppGameboard.receiveAttack(location + 1);
       return `fired at ${location}`;
     },
 
@@ -19,6 +19,7 @@ const Player = (name, cpu) => {
       let location = locationArray[randomLocation(locationArray.length)];
 
       this.oppGameboard.receiveAttack(location);
+
     }
   }
   return player;

@@ -5,9 +5,10 @@ describe ('gameboard functions', () => {
   let fleet = [];
   let battleship;
   let cruiser;
-  let gameboard = gameboardFactory(fleet);
-  gameboard.createBoard();
+  let gameboard;
   beforeEach(() => {
+    gameboard = gameboardFactory(fleet);
+    gameboard.createBoard();
     battleship = shipFactory('battleship', 4, [1, 2, 3, 4]);
     cruiser = shipFactory('cruiser', 3, [24, 34, 44]);
     gameboard.placeShip(battleship);
@@ -36,7 +37,7 @@ describe ('gameboard functions', () => {
     gameboard.receiveAttack(24);
     expect(cruiser.hits.length).toBe(1)
   })
-
+  
   test ('sunk the battleship and cruiser', () => {
     gameboard.receiveAttack(1);
     gameboard.receiveAttack(2);

@@ -11,7 +11,7 @@ const gameboardFactory = (fleet) => {
     placeShip : function(ship) {
       const location = ship.getLocation();
       location.forEach(element => {
-        this.gameboardArray[element-1] = ship.name;
+        this.gameboardArray[element - 1] = ship.name;
       });
     },
 
@@ -29,7 +29,9 @@ const gameboardFactory = (fleet) => {
       for (let i = 0; i < fleet.length; i++){
         if(fleet[i].isSunk() === false) {
           answer = false;
-        } 
+        } else {
+          console.log(`${fleet[i].name} sunk`);
+        }
       }
       return answer;
     }
