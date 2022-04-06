@@ -1,4 +1,4 @@
-const gameboardFactory = (fleet) => {
+const gameboardFactory = () => {
   const gameboard = {
     gameboardArray : [],
     
@@ -15,7 +15,7 @@ const gameboardFactory = (fleet) => {
       });
     },
 
-    receiveAttack : function(location) {
+    receiveAttack : function(location, fleet) {
       if (typeof this.gameboardArray[location-1] === 'string') {
         fleet.forEach(ship => ship.hit(location));
         this.gameboardArray[location-1] += ' hit';
@@ -24,7 +24,7 @@ const gameboardFactory = (fleet) => {
       }
     },
 
-    isFleetSunk : function() {
+    isFleetSunk : function(fleet) {
       let answer = true
       for (let i = 0; i < fleet.length; i++){
         if(fleet[i].isSunk() === false) {

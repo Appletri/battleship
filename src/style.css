@@ -15,6 +15,38 @@ h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
+
+.locator-helper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  width: 54vw;
+  min-width: 375px;
+  height: 50vw;
+  min-height: 350px;
+  gap: 0px;
+}
+
+.locator {
+  width: 5vw;
+  min-width: 35px;
+  height: 5vw;
+  min-height: 35px;
+  border-radius: .5vw;
+  transition: .2s ease-in;
+  border: 1px solid black;
+}
+
+.ship {
+  background-color: black;
+}
+
+.error {
+  background-color: red;
+}
+
 .main {
   display: flex;
   justify-content: center;
@@ -33,6 +65,11 @@ h1 {
   min-height: 350px;
   gap: 2px;
 }
+
+.hidden {
+  display:none;
+}
+
 .square {
   width: 5vw;
   min-width: 35px;
@@ -44,13 +81,13 @@ h1 {
 
 .unknown-attack{
   background: radial-gradient(circle at bottom center, #FFC837 15px, #FF8008);
-  box-shadow: 0 10px 10px -5px rgba(255, 171, 75, 0.425), 0 10px 0 rgb(114, 13, 0);
+  box-shadow: 0 10px 10px -5px rgba(255, 171, 75, 0.425), 0px 10px 0 rgb(114, 13, 0);
 }
 
 .unknown-attack:hover {
   background: radial-gradient(circle at bottom center, #fdcc50 15px, #ff8e25);
   transform: translateY(-8px);
-  box-shadow: 0 10px 10px -5px rgba(255, 171, 75, 0.425), 0 10px 0 rgb(114, 13, 0);
+  box-shadow: 0 10px 10px -5px rgba(255, 171, 75, 0.425), 0px 10px 0 rgb(114, 13, 0);
 }
 
 .unknown-defense{

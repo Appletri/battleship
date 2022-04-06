@@ -7,7 +7,7 @@ describe ('gameboard functions', () => {
   let cruiser;
   let gameboard;
   beforeEach(() => {
-    gameboard = gameboardFactory(fleet);
+    gameboard = gameboardFactory();
     gameboard.createBoard();
     battleship = shipFactory('battleship', 4, [1, 2, 3, 4]);
     cruiser = shipFactory('cruiser', 3, [24, 34, 44]);
@@ -27,25 +27,25 @@ describe ('gameboard functions', () => {
   })
   
   test ('testing gameboard receiving hit', () => {
-    gameboard.receiveAttack(22);
-    gameboard.receiveAttack(3);
+    gameboard.receiveAttack(22, fleet);
+    gameboard.receiveAttack(3, fleet);
     expect(gameboard.gameboardArray[21]).toMatch('miss'),
     expect(gameboard.gameboardArray[2]).toMatch('battleship hit')
   })
   
   test ('receiving hit sends hit function to ship', () => {
-    gameboard.receiveAttack(24);
+    gameboard.receiveAttack(24, fleet);
     expect(cruiser.hits.length).toBe(1)
   })
   
   test ('sunk the battleship and cruiser', () => {
-    gameboard.receiveAttack(1);
-    gameboard.receiveAttack(2);
-    gameboard.receiveAttack(3);
-    gameboard.receiveAttack(4);
-    gameboard.receiveAttack(24);
-    gameboard.receiveAttack(34);
-    gameboard.receiveAttack(44);
-    expect(gameboard.isFleetSunk()).toBe(true);
+    gameboard.receiveAttack(1, fleet);
+    gameboard.receiveAttack(2, fleet);
+    gameboard.receiveAttack(3, fleet);
+    gameboard.receiveAttack(4, fleet);
+    gameboard.receiveAttack(24, fleet);
+    gameboard.receiveAttack(34, fleet);
+    gameboard.receiveAttack(44, fleet);
+    expect(gameboard.isFleetSunk(fleet)).toBe(true);
   })
 })

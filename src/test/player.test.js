@@ -11,15 +11,15 @@ describe('player functions', () => {
     expect(player1.oppGameboard.gameboardArray[2]).toMatch('miss');
   })
   
-  test('Player 2 fired at the board randomly 100 times', async () => {
+  test('Player 2 fired at the board randomly 100 times', () => {
     for (let i = 0; i < 100; i++) {
       player2.attackRandom()
     }
-    expect(await player2.oppGameboard.gameboardArray[3]).toMatch('miss'),
-    expect(await player2.oppGameboard.gameboardArray[40]).toMatch('miss'),
-    expect(await player2.oppGameboard.gameboardArray[23]).toMatch('miss'),
-    expect(await player2.oppGameboard.gameboardArray[13]).toMatch('miss'),
-    expect(await player2.oppGameboard.gameboardArray[80]).toMatch('miss'),
-    expect(await player2.oppGameboard.gameboardArray[72]).toMatch('miss')
+    expect(player2.oppGameboard.gameboardArray[3]).toMatch('miss'),
+    expect(player2.oppGameboard.gameboardArray[40]).toMatch('miss'),
+    expect(player2.oppGameboard.gameboardArray[23]).toMatch('miss'),
+    expect(player2.oppGameboard.gameboardArray[13]).toMatch('miss'),
+    expect(player2.oppGameboard.gameboardArray[80]).toMatch('miss'),
+    expect(player2.oppGameboard.gameboardArray[72]).toMatch('miss')
   })
 })

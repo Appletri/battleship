@@ -6,8 +6,8 @@ const Player = (name, cpu) => {
     cpu : cpu,
     oppGameboard : gameboard(),
 
-    attack : function(location) { 
-      this.oppGameboard.receiveAttack(location + 1);
+    attack : function(location, fleet) { 
+      this.oppGameboard.receiveAttack(location + 1, fleet);
       return `fired at ${location}`;
     },
 
