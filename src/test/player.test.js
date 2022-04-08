@@ -7,7 +7,7 @@ describe('player functions', () => {
   player2.oppGameboard.createBoard();
 
   test('Player 1 fired at the enemy board', () => {
-    player1.attack(2);
+    player1.attack(3);
     expect(player1.oppGameboard.gameboardArray[2]).toMatch('miss');
   })
   

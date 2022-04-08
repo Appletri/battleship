@@ -1,4 +1,4 @@
-const gameboardFactory = () => {
+const gameboardFactory = (fleet) => {
   const gameboard = {
     gameboardArray : [],
     
@@ -11,7 +11,7 @@ const gameboardFactory = () => {
     placeShip : function(ship) {
       const location = ship.getLocation();
       location.forEach(element => {
-        this.gameboardArray[element - 1] = ship.name;
+        this.gameboardArray[element-1] = ship.name;
       });
     },
 

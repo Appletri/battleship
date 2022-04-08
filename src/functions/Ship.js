@@ -4,6 +4,7 @@ const shipFactory = (name, size, location) => {
     size : size,
     location : location,
     hits : [],
+
     getLocation : function() {
       return this.location;
     },
