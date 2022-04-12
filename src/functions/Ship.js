@@ -5,6 +5,29 @@ const shipFactory = (name, size, location) => {
     location : location,
     hits : [],
 
+    findRandomLocation() {
+      let coor = []
+      let orientation = Math.floor(Math.random() * 1); //outputs 1 or 0
+      let origin = (Math.floor(Math.random() * 100))+1;
+      // horizontal orientation
+      if (orientation === 0) {
+        if (origin > ((Math.ceil(origin/10)*10) - this.size + 1)) {
+          origin = origin - this.size;
+        }
+        for (let i = 0; i < this.size; i++) {
+          coor.push(origin + i);
+        }
+      } else { //vertical orientation
+        if (origin > 100 - (this.size * 10)) {
+          origin = origin - (this.size * 10);
+        }
+        for (let i = 0; i < this.size; i++) {
+          coor.push(origin + (10 * i));
+        }
+      }
+      this.location = coor;
+    },
+
     getLocation : function() {
       return this.location;
     },

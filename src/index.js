@@ -7,8 +7,8 @@ const determineShipLocation = require('./functions/placeShip');
 function game() {
 
   //create players
-  let player1 = player('Player 1', false);
-  let player2 = player('Robot', true);
+  let player1 = player('Player 1');
+  let player2 = player('Robot');
 
   //create players' fleets
   let fleet = [];
@@ -34,6 +34,7 @@ function game() {
   }
   //Initialize gameboard and fleets
   createFleet(fleet);
+  createFleet(oppFleet);
   // createFleet(player2.oppGameboard, fleet);
   
   //Initialize UI
@@ -74,13 +75,13 @@ function game() {
           } else {
             e.target.className = 'square miss'; 
           }
-          player1.attack(target, fleet);
-          player1.oppGameboard.isFleetSunk(fleet);
+          player1.attack(target, oppFleet);
+          player1.oppGameboard.isFleetSunk(oppFleet);
           
-          // return swapToAtt();
+          return swapTurn();
           
         } else {
-          if (typeof player2.oppGameboard.gameboardArray[target] === 'string') {
+          if (typeof player2.oppGameboard.gameboardArray[target - 1] === 'string') {
             e.target.className = 'square hit'; 
           } else {
             e.target.className = 'square miss'; 
@@ -88,17 +89,21 @@ function game() {
           player2.attack(target, fleet);
           player2.oppGameboard.isFleetSunk(fleet);
           
-          return swapToAtt();
+          return swapTurn();
           
         }
       }  
     }
     //swap gameboard after every hitconfirm
-    function swapToAtt() {
+    function swapTurn() {
+      const hitDiv = document.createElement('div');
+      hitDiv.className = 'hit-confirm';
+      main.appendChild(hitDiv);
       setTimeout(() => {
         gameBoardPlayer.classList.toggle('hidden');
         gameBoardEnemy.classList.toggle('hidden');
-      }, 300)
+        main.removeChild(hitDiv);
+      }, 1000)
     }
     
     createTable(gameBoardPlayer, 'unknown-attack');
@@ -112,8 +117,9 @@ function game() {
   //startup
   domInit();
   const main = document.querySelector('.main');
-  determineShipLocation(main, fleet, player1.oppGameboard);
+  determineShipLocation(main, fleet, player2.oppGameboard);
   gameboardInit(main);
+  player1.oppGameboard.placeFleetRandomly(oppFleet);
 }
 
 game();

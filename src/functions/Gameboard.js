@@ -8,6 +8,26 @@ const gameboardFactory = (fleet) => {
       }
     },
 
+    placeFleetRandomly : function(fleet) {
+      fleet.forEach(ship => {
+        let noOverlap = false;
+        ship.findRandomLocation();
+        while (noOverlap === false) {
+          for (let i = 0; i < ship.size; i++) {
+            if (typeof this.gameboardArray[ship.location[i]] === 'string') {
+              // console.log(`reroll ${ship.name} location`);
+              ship.findRandomLocation();
+            } else {
+              this.placeShip(ship);
+              return noOverlap = true;
+            }
+          }
+        }
+      });
+      // cheatsheet
+      console.log(this.gameboardArray);
+    },
+    
     placeShip : function(ship) {
       const location = ship.getLocation();
       location.forEach(element => {

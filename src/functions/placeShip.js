@@ -169,7 +169,7 @@
               coor.push(parseInt(spot.id))
               spot.className = `${fleet[ship].name}`
             });
-            console.log(coor);
+            // console.log(coor);
             fleet[ship].location = coor;
             coor = [];
             ship++;

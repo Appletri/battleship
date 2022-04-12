@@ -1,9 +1,8 @@
 const gameboard = require('./Gameboard');
 
-const Player = (name, cpu) => {
+const Player = (name) => {
   const player = {
     name : name,
-    cpu : cpu,
     oppGameboard : gameboard(),
 
     attack : function(location, fleet) { 
