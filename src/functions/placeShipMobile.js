@@ -6,13 +6,9 @@
       let coor = [];
       
       function findShipLocation() {
-
-        const header = document.querySelector('h1');
-
         //ends functions when all ships have been placed
         if (ship === fleet.length) {
           //cleanUP
-          header.textContent = `Battleship`;
           for (let i = 0; i < fleet.length; i++) {
             gameboard.placeShip(fleet[i]);
           }
@@ -22,16 +18,21 @@
           }, 1500);
           return;
         }
-        
-        
-        header.textContent = `Place your ${fleet[ship].name}`
+
+
         let shipLength = fleet[ship].size;
         const squares = document.querySelectorAll('.locator');
         squares.forEach(square => {
-          square.addEventListener('mouseover', displayShip);
-          square.addEventListener('click', findOrigin);
+          square.addEventListener('click', displayShip);
+          // square.classList.add('indicator');
         })
         function displayShip(e) {
+          // removes previous display
+          const targetIDs = document.querySelectorAll('.ship');
+          targetIDs.forEach(target => {
+            target.className = 'locator';
+          });
+          
           const targetID = parseInt(e.target.id);
           for (let i = 0; i < shipLength; i++){
             // logic rounds targetID up to the nearest 10th to 
@@ -44,28 +45,21 @@
               target.className = 'locator ship';
             }
           }
-          e.target.addEventListener('mouseout', removeDisplayShip);
-        }
-  
-        function removeDisplayShip(e) {
-          const targetIDs = document.querySelectorAll('.ship');
-          targetIDs.forEach(target => {
-            target.className = 'locator';
-          });
-          e.target.removeEventListener('mouseout', removeDisplayShip)
         }
       
-        function findOrigin(e) {
+        function findOrigin() {
           const origin = parseInt(e.target.id)
           const squares = document.querySelectorAll('.locator');
           squares.forEach(square => {
-            square.removeEventListener('mouseover', displayShip);
-            square.removeEventListener('click', findOrigin);
+            square.removeEventListener('click', displayShip);
+            // square.removeEventListener('click', findOrigin);
+            // square.classList.remove('indicator');
             //logic activates squares on the same row and column as the first coordinate
             if ((square.id > Math.floor((origin-1) / 10)*10 && 
             square.id <= Math.ceil(origin / 10)*10) ||   
             square.id % 10 === origin % 10) {
               square.addEventListener('mouseover', showOrientation);
+              // square.classList.add('indicator');
             }             
           })
         
@@ -147,6 +141,7 @@
             }
             //west orientation
             else if (targetID >= Math.floor((origin - 1) / 10)*10 && targetID < origin) {
+              console.log((Math.floor((origin -1) / 10) * 10));
               //error handling for orientation
               if (origin < (Math.floor((origin - 1) / 10) * 10) + shipLength) {
                 shipClassNames = error;

@@ -1,6 +1,7 @@
 const gameboardFactory = (fleet) => {
   const gameboard = {
     gameboardArray : [],
+    recentAttack: 0,
     
     createBoard : function() {
       for (let i = 1; i <= 100; i++) {
@@ -42,6 +43,7 @@ const gameboardFactory = (fleet) => {
       } else {
         this.gameboardArray[location-1] = 'miss';
       }
+      this.recentAttack = location;
     },
 
     isFleetSunk : function(fleet) {

@@ -41,7 +41,7 @@ function game() {
   function domInit() {
     const head = document.createElement('h1');
     const main = document.createElement('div');
-    // const swapAtt = document.createElement('button');
+    
     main.className = 'main';
     head.textContent = 'Battleship';
     
@@ -51,10 +51,16 @@ function game() {
   }
 
   function gameboardInit(parent) {
+    const swapBoardButton = document.createElement('button');
     const gameBoardPlayer = document.createElement('div');
     const gameBoardEnemy = document.createElement('div');
     gameBoardPlayer.className = 'gameboard attack';
     gameBoardEnemy.className = 'gameboard defense hidden';
+    gameBoardPlayer.id = 'attack';
+    gameBoardEnemy.id = 'defense';
+    swapBoardButton.className = 'sbb';
+    swapBoardButton.textContent = 'Swap Board';
+    swapBoardButton.addEventListener('click', swapBoard);
     //generates 100 squares for gameboard
     function createTable(parent, attDef) {
       for (let i = 1; i <= 100; i++) {
@@ -79,23 +85,37 @@ function game() {
           player1.oppGameboard.isFleetSunk(oppFleet);
           
           return swapTurn();
-          
-        } else {
-          if (typeof player2.oppGameboard.gameboardArray[target - 1] === 'string') {
-            e.target.className = 'square hit'; 
-          } else {
-            e.target.className = 'square miss'; 
-          }
-          player2.attack(target, fleet);
-          player2.oppGameboard.isFleetSunk(fleet);
-          
-          return swapTurn();
-          
-        }
+        } 
       }  
     }
-    //swap gameboard after every hitconfirm
+
     function swapTurn() {
+      swapBoard();
+      compTurn();
+    }
+
+    //Computer turn
+    function compTurn() {
+      player2.attackRandom(fleet);
+      player2.oppGameboard.isFleetSunk(fleet);
+      setTimeout(() => {
+        updateGameboard();
+        swapBoard();
+      }, 200)
+    }
+    
+    //update player gameboard
+    function updateGameboard() {
+      const board = document.getElementById('defense');
+      if (player2.oppGameboard.gameboardArray[player2.oppGameboard.recentAttack - 1] === 'miss') {
+        board.children[player2.oppGameboard.recentAttack - 1].className = 'square miss';
+      } else {
+        board.children[player2.oppGameboard.recentAttack - 1].className = 'square hit';
+      }
+    }
+
+    //swap gameboard after every hitconfirm
+    function swapBoard() {
       const hitDiv = document.createElement('div');
       hitDiv.className = 'hit-confirm';
       main.appendChild(hitDiv);
@@ -103,13 +123,16 @@ function game() {
         gameBoardPlayer.classList.toggle('hidden');
         gameBoardEnemy.classList.toggle('hidden');
         main.removeChild(hitDiv);
-      }, 1000)
+      }, 200)
+      
+      
     }
     
     createTable(gameBoardPlayer, 'unknown-attack');
     createTable(gameBoardEnemy, 'unknown-defense');
     parent.appendChild(gameBoardPlayer);
     parent.appendChild(gameBoardEnemy); 
+    document.body.appendChild(swapBoardButton);
   }
   
   
