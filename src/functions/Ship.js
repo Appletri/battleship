@@ -26,7 +26,7 @@ const shipFactory = (name, size, location) => {
         }
       }
       this.location = coor;
-      console.log(coor);
+      // console.log(coor);
     },
 
     getLocation : function() {

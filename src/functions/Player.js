@@ -26,7 +26,6 @@ const Player = (name) => {
     },
 
     cpuAttack : function(fleet) {
-      let playerGB = this.oppGameboard.gameboardArray;
       let lastShot = this.oppGameboard.recentAttack;
       if (this.cpuDirection === 'n') {
         if (lastShot - 10 > 0) {
@@ -58,7 +57,7 @@ const Player = (name) => {
         }    
       }
       else if (this.cpuDirection === 'e') {
-        if (lastShot + 1 < Math.ceil(lastShot / 10) * 10) {
+        if (lastShot + 1 <= Math.ceil(lastShot / 10) * 10) {
           if (this.cpuAmmo.includes(lastShot + 1) || this.cpuAmmo.includes(this.firstHit + 1)) {
             if (this.adjustment === true) {
               this.adjustment = false;

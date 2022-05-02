@@ -121,8 +121,8 @@ function game() {
       let text = '';
       //cpu logic
       if (last === 'miss') {
-        player2.attackRandom(fleet);
-        // player2.attack(11, fleet);
+        // player2.attackRandom(fleet);
+        player2.attack(47, fleet);
         updateGameboard();
       } else {
         player2.cpuAttack(fleet);

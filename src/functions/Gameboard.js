@@ -27,7 +27,7 @@ const gameboardFactory = (fleet) => {
         }
       });
       // cheatsheet
-      console.log(this.gameboardArray);
+      // console.log(this.gameboardArray);
     },
     
     placeShip : function(ship) {
