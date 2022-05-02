@@ -7,7 +7,7 @@ const shipFactory = (name, size, location) => {
 
     findRandomLocation() {
       let coor = []
-      let orientation = Math.floor(Math.random() * 1); //outputs 1 or 0
+      let orientation = Math.floor(Math.random() * 2); //outputs 1 or 0
       let origin = (Math.floor(Math.random() * 100))+1;
       // horizontal orientation
       if (orientation === 0) {
@@ -26,6 +26,7 @@ const shipFactory = (name, size, location) => {
         }
       }
       this.location = coor;
+      console.log(coor);
     },
 
     getLocation : function() {

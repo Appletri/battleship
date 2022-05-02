@@ -16,6 +16,7 @@
           for (let i = 0; i < fleet.length; i++) {
             gameboard.placeShip(fleet[i]);
           }
+          revealShips();
           locatorHelper.style.opacity = 0;
           setTimeout(function() {
             parent.removeChild(locatorHelper);
@@ -195,6 +196,15 @@
           square.className = `locator`;
           square.id = i;
           parent.appendChild(square);
+        }
+      }
+
+      function revealShips() {
+        const board = document.getElementById('defense');
+        for (let i = 0; i < board.children.length; i++) {
+          if (typeof gameboard.gameboardArray[i] === 'string') {
+            board.children[i].classList.add('fleet');
+          }
         }
       }
       

@@ -1,4 +1,5 @@
 const player = require('../functions/Player');
+const shipFactory = require('../functions/Ship');
 
 describe('player functions', () => {
   let player1 = player('Joe', false);
@@ -22,4 +23,5 @@ describe('player functions', () => {
     expect(player2.oppGameboard.gameboardArray[80]).toMatch('miss'),
     expect(player2.oppGameboard.gameboardArray[72]).toMatch('miss')
   })
+
 })

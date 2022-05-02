@@ -2,7 +2,8 @@ const gameboardFactory = (fleet) => {
   const gameboard = {
     gameboardArray : [],
     recentAttack: 0,
-    
+    sunkShip: null,
+
     createBoard : function() {
       for (let i = 1; i <= 100; i++) {
         this.gameboardArray.push(i)
@@ -15,12 +16,12 @@ const gameboardFactory = (fleet) => {
         ship.findRandomLocation();
         while (noOverlap === false) {
           for (let i = 0; i < ship.size; i++) {
-            if (typeof this.gameboardArray[ship.location[i]] === 'string') {
-              // console.log(`reroll ${ship.name} location`);
+            if (typeof this.gameboardArray[ship.location[i] - 1] === 'string') {
+              console.log(`reroll ${ship.name} location`);
               ship.findRandomLocation();
             } else {
               this.placeShip(ship);
-              return noOverlap = true;
+              return;
             }
           }
         }
@@ -52,7 +53,9 @@ const gameboardFactory = (fleet) => {
         if(fleet[i].isSunk() === false) {
           answer = false;
         } else {
-          console.log(`${fleet[i].name} sunk`);
+          this.sunkShip = `${fleet[i].name} sunk`;
+          console.log(this.sunkShip);
+          fleet.splice(i, 1);
         }
       }
       return answer;
