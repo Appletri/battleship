@@ -85,7 +85,6 @@ function game() {
             text = 'MISS'
           }
           player1.attack(target, oppFleet);
-          player1.oppGameboard.isFleetSunk(oppFleet);
           
           determineSunkShip(player1, oppFleet);
           checkForWin(player1, oppFleet);
@@ -121,8 +120,8 @@ function game() {
       let text = '';
       //cpu logic
       if (last === 'miss') {
-        // player2.attackRandom(fleet);
-        player2.attack(47, fleet);
+        player2.attackRandom(fleet);
+        // player2.attack(47, fleet);
         updateGameboard();
       } else {
         player2.cpuAttack(fleet);

@@ -17,14 +17,15 @@ const gameboardFactory = (fleet) => {
         while (noOverlap === false) {
           for (let i = 0; i < ship.size; i++) {
             if (typeof this.gameboardArray[ship.location[i] - 1] === 'string') {
-              console.log(`reroll ${ship.name} location`);
+              // console.log(`reroll ${ship.name} location`);
               ship.findRandomLocation();
+              i = -1;
             } else {
-              this.placeShip(ship);
-              return;
+              noOverlap = true;
             }
           }
         }
+        this.placeShip(ship);
       });
       // cheatsheet
       // console.log(this.gameboardArray);
