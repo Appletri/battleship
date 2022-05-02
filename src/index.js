@@ -99,7 +99,7 @@ function game() {
         const win = document.createElement('div');
         win.className = 'win';
         win.textContent = `${player.name} wins`;
-        main.appendChild(win);
+        document.body.appendChild(win);
       } 
     }
 
