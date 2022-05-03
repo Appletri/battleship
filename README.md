@@ -7,12 +7,14 @@
 
 ## About
 ### Test Driven Development
+<hr>
 Test-driven development (TDD), is a new age evolutionary approach to development which emphasizes test-first development. Here you write a test before you write just enough production code to fulfill that test and then go on to refactor the code. The primary goal of TDD is specification and not validation (Martin, Newkirk, and Kess 2003).  In other words, TDD is one way to think through your requirements or design before your write your functional code (implying that TDD is both an important agile requirements and agile design technique). Another view is that TDD is a programming technique. As Ron Jeffries likes to say, the goal of TDD is to write clean code that works.
 
 ### Factory Functions
 This is my first project following the TDD using Jest. I created the player, gameboard, and ship factory functions prior to production code. Testing these functions prior to creating the game ensures that my functions acting as my foundation will work, making the production smoother. 
 
 ### User Interface
+<hr>
 #### The Board
 Creating the user interface was next. Looking at the original game Battleship, the game requires two grids, one for your board and one for your opponent. I wanted to make the UI simple and efficient. The goal was to create one visul board and having the ability to swap between boards at will. 
 
@@ -26,6 +28,7 @@ I felt like instead of having text saying miss and hit, this was a great way to 
 After initializing the game, the player will need to place their ships. I wanted to make this simple and intuitive. I create a function where it displays the ship on hover and the first click will solidify the ship and its origin. The player can now pivot the ship based on the origin, the second click will lock in the ship to its location and updated the gameboard array with the ships name.
 
 ### Gameplay
+<hr>
 The player will fire at a square, earning a 'hit' or a 'miss'. After the player's turn, the board will swap to the cpu board where the cpu will make it's move.
 
 ### placeFleetRandomly
