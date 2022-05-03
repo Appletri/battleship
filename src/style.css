@@ -32,8 +32,10 @@ h1 {
   flex-flow: row wrap;
   width: 54vw;
   min-width: 375px;
+  max-width: 645px;
   height: 50vw;
   min-height: 350px;
+  max-height: 596px;
   gap: 0px;
   transition: 1.10s ease-out;
 }
@@ -46,8 +48,10 @@ h1 {
 .locator, .carrier, .battleship, .cruiser, .destroyer, .submarine  {
   width: 5vw;
   min-width: 35px;
+  max-width: 61.75px;
   height: 5vw;
   min-height: 35px;
+  max-height: 61.75px;
   border-radius: .5vw;
   transition: .2s ease-in;
   border: 1px solid rgba(0, 0, 0, 0);
@@ -111,8 +115,10 @@ h1 {
   flex-flow: row wrap;
   width: 53vw;
   min-width: 375px;
+  max-width: 645px;
   height: 50vw;
   min-height: 350px;
+  max-height: 596px;
   gap: 2px;
 }
 /* .square:nth-child(9n) {
@@ -155,8 +161,10 @@ h1 {
 .square {
   width: 5vw;
   min-width: 35px;
+  max-width: 61.75px;
   height: 5vw;
   min-height: 35px;
+  max-height: 61.75px;
   border-radius: 0.6vw;
   transition: .2s ease-in;
 }
