@@ -1,5 +1,5 @@
 # Battleship
-
+![](https://github.com/Appletri/Appletri/blob/main/assets/battleship.gif)
 ## Links
 - [Try Battleship here!](https://Appletri.github.io/battleship/dist)
 
